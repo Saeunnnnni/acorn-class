@@ -16,12 +16,51 @@
 
         .container{
             width: 768px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 50px auto;
+            border: 1px solid #333;
+            padding: 50px 100px;
+             background-color: #e0e0e0;            
+             box-shadow: 5px 5px 5px #333;
+            
         }
 
         h1{
-            text-decoration: underline;
+         text-align: center;
+        }
+
+        form{
+          
+            display: grid;
+            grid-template-columns: 1fr;
+           
+           
+            
+        }
+
+        label{
+            margin: 20px 0;
+        }
+
+        button{
+            width: 100px;
+            height: 50px;
+            margin-top: 50px;
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: bold;
+            background-color:#049ff2;
+            box-shadow: 5px 5px 5px #333;
+            cursor: pointer;
+        }
+
+        button:hover{
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+        .btn-box{
+            text-align: center;
         }
     </style>
 </head>
@@ -43,7 +82,9 @@
                 <input type="text" id="email" name="email">
                 <label for="pwd">비밀번호</label>
                 <input type="password" name="pwd" id="pwd">
-                <button type="submit">로그인</button>
+                 <div class="btn-box">
+
+                <button type="submit">로그인</button> </div>
 
              </form>
 
