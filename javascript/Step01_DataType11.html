@@ -22,6 +22,22 @@
         
         //함수를 호출하면서 값2개 전달하기 
         printSum(10,20);
+
+        //매개 변수로 전달된 값이 function type이라는 가정하에서 사용 되는 함수 
+        let useFunc=function(f){
+            f();
+        };
+
+        useFunc(function(){
+            console.log("원");
+            console.log("투우우우");
+            console.log("쓰리리리리");
+        });
+
+
+        useFunc(()=>{
+            console.log("호출됨!");
+        })
     </script>
 </body>
 </html>
