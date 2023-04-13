@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>다중 if문 테스트</h1>
+    <input type="text" id="jumsu" placeholder="점수 입력...">
+    <botton onclick="check()">확인하기</botton>
+    <p>
+        <strong id="result"></strong>학점입니다.
+    </p>
+
+    <script>
+        /*  
+        input 요소에 점수를 입력하고 확인하기 버트늘 눌렀을대 점수가 
+        90점 이상이면 "A"
+        80점 이상이면 "B"
+        70점 이상이면 "C"
+        60점 이상이면 "D"
+        그 외의 경우에는 "F" 라는 문자열을 id가 result인 곳의 innerText로 출력해보세요.
+        */
+
+
+        let check = () => {
+            let score = document.querySelector("#jumsu").value;
+            if(score >= 90){
+                document.querySelector("#result").innerHTML = "A"
+            }else if(score >=80){
+                document.querySelector("#result").innerHTML = "B"
+            }else if(score >=70){
+                document.querySelector("#result").innerHTML = "C"
+            }else if(score >=60){
+                document.querySelector("#result").innerHTML = "D"
+            }else{
+                document.querySelector("#result").innerHTML = "F"
+            }
+        }
+    </script>
+</body>
+</html>

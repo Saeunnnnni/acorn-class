@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_document3</title>
+    <style>
+        p{
+            color: blue;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color:yellow;
+            cursor: pointer;
+            transition: margin-left 0.4s linear;
+        }
+        button{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <h1> 인라인 css 테스트</h1>
+    <p >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis architecto culpa qui aut accusantium repudiandae assumenda voluptates, aspernatur ad tenetur doloremque saepe modi, veniam eos, dolorum optio vero nesciunt cum.</p>
+    <button onclick="reset();"> Reset</button>
+    <div class="box" onclick="clickBox();">  눌러보세요</div>
+</body>
+<script>
+
+    //박스를 누를때마다 100씩 증가하게 만들기! 
+    //함수 안에서 사용할 변수를 페이지 로딩 시점에 미리 초기값을 대입해서 만들어 둔다.
+     let mLeft=0;
+
+    let clickBox = function(){  
+    //global영역에 선언된 변수 사용 가능
+    //let mLeft=0; local영역에서 선언된 변수는 함수가 실행될때마다 똑같은 값으로 생기기 때문에! 
+    mLeft = mLeft + 100; 
+    console.log(mLeft + "px");
+    
+
+
+    document.querySelector(".box").style.marginLeft=mLeft +"px";
+};
+    let reset =  function(){
+        document.querySelector(".box").style.marginLeft= 0;
+    }
+
+
+    //슨생님이 한 방식 
+    /*let reset = () => {
+        mLeft=0;
+        document.querySelector(".box").style.marginLeft = mLeft + "px";
+    };*/
+
+
+
+</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_document</title>
+    <style>
+     
+    </style>
+</head>
+<body>
+    <h1> document object 사용해 보기</h1>
+    <button onclick="clickBtn();">바꾸기</button>
+    <p id="one" onmouseover = "mouseOver();">p1</p>
+    <p class="my-class">p2</p>
+    <p class="my-class">p3</p>
+    <input type="text" id="two">
+    <button onclick="send();">전송 &rarr; </button>
+    <input type="text" id="three">
+    <script>  
+        //h1 요소의  innerText를 특정 버튼을 눌렀을때 바꾸고 싶다.
+        let clickBtn = function(){
+            document.querySelector("h1").innerText="오잉";
+        }
+        
+        
+        //p1에 mouseoverrk 가 되었을때 innerText를 '마우스가 올라왔네?' 라고 변경
+        let mouseOver = function(){
+            document.querySelector("p").innerText="마우스가 올라왔네?";
+        }
+
+    
+       
+        /* let b = document.querySelector("#three").value; */
+        let send = function(){
+            let a = document.querySelector("#two").value;
+            //1.첫번째 input 요소에 입력한 value를 읽어온다.
+            document.querySelector("#three").value = a;
+            //2. 위에서 읽어온 value 갑슬 두번째 input 요소의 value값으로 넣어준다. 
+        }
+        
+
+
+        /* 처음에 내가 작성했던 코드 !
+            안되는 이유는 이렇게 하면 value값을 받아오지 못하고 
+            비어있는 상태이기 때문에 a에 value값을 입력해도
+            b에 넘어가지 않음! 
+            나는 function안에를 간결하게 적고 싶었던거이긴 하지만 
+            잘못된 방법이었당 .. */     
+      /*    let a = document.querySelector("#two").value;
+            let b = document.querySelector("#three").value;    
+            let send = function(){
+                a= b;
+             
+        } */
+           /* 
+           그래서 꼭 이렇게 변수를 만들어서 사용하고 싶다면
+           변수를 만들고 value값을 정해줘야지 value에 들어오는 값을 불러올 수 있다.
+           틀린건 아니지만 쌤은 굳이 이렇게 작성하지 않는다고 했음 
+
+
+            let firstInput=document.querySelector("#two");
+            let secondInput=document.querySelector("#three");
+
+            let send=()=>{
+                secondInput.value = firstInput.value;
+            }*/
+
+    </script>   
+</body>
+</html>
