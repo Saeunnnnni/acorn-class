@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            background-color:  yellow;
+            cursor: pointer;
+            transition: margin-left 0.4 ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">div1</div>
+    <div class="box">div2</div>
+    <div class="box">div3</div>
+    <div class="box">div4</div>
+    <div class="box">div5</div>
+
+
+    <script>
+
+        //처음에 실행 안됐던 이유가  i의 최대값을 잘못 설정함 ㅜ 5인데 10으로,,,
+        //그래서 차라리 i의 값에 숫자를 넣기 보다는 length값을 넣는게 나을뜻 !
+        //그리고 부등호,, 자꾸 반대로 적어줘서 틀리냐고오옹 ! ! 
+
+
+        (function(){
+                        
+            for(let i=0; i < 5; i++){
+
+            let mLeft = 0;
+
+            document.querySelectorAll(".box")[i].addEventListener("click",(e)=> {
+                console.log("e");
+                //margin-left 값을 저장할 변수를 만들고 초기값 0 부여
+                mLeft += 100;
+                
+                //click 이벤트가 발생한 바로 그 요소의 marginLeft 값을 변경시키기
+                e.target.style.marginLeft= mLeft +"px";
+            })
+            }
+
+        })();
+    </script>
+</body>
+</html>
