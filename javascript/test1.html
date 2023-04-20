@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+
+        P{
+            width: 100PX;
+            height: 100PX;
+            background-color: RED;
+            cursor: pointer;
+        }
+        .container{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            transition: margin-left 0.4 ease-in;
+        }
+
+        .bigBox{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>안녕</h1>
+    <button onclick="btn();">바꾸기</button>
+    <div class="box" onclick="marginLeft();" ></div>
+    <input id="one" type="text">
+    <button onclick="submit();">전송</button>
+    <input id="two" type="text">
+    <p>p1입니다</p>
+    <p>p2입니다</p>
+    <p>p3입니다</p>
+    <p>p4입니다</p>
+    <p>p5입니다</p>
+    <p>p6입니다</p>
+    <p>p7입니다</p>
+    <p>p8입니다</p>
+    <p>p9입니다</p>
+    <p>p10입니다</p>
+
+    <ul>
+        <li>li1</li>
+        <li>li2</li>
+        <li>li3</li>
+        <li>li4</li>
+        <li>li5</li>
+    </ul>
+
+    <button onclick="print();">출력</button>
+
+    <div class="container"></div>
+    <div class="container"></div>
+    <div class="container"></div>
+    <div class="container"></div>
+    <div class="container"></div>
+
+
+    <div class="bigBox"></div>
+
+    <table border="1" >
+        <caption>표의 제목</caption>
+        <colgroup>
+            <col width="200">
+            <col width="100">
+            <col width="200">
+
+        </colgroup>
+        <thead>
+            <tr>
+                <th>제목1</th>
+                <th>제목2</th>
+                <th>제목3</th>
+            </tr>
+        </thead>
+        <tdody>
+            <tr>
+                <td colspan="3">1</td>
+               <!--  <td>2</td>
+                <td>3</td> -->
+            </tr>
+            <tr>
+                <td rowspan="2">1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <!-- <td>1</td> -->
+                <td>2</td>
+                <td>3</td>
+            </tr>
+        </tdody>
+    </table>
+
+
+    <form action="server.jsp">
+        <fieldset>
+            <label for="name">이름: <input type = "text" name="email"></label>
+        </fieldset>
+        <fieldset>
+            <label for="password">비밀번호: <input type = "password" name="pass
+                "></label>
+        </fieldset>
+
+        <label for="email">이메일: <input type="email" ></label>
+        <fieldset>
+            <label >남자<input type="radio" value="men"></label>
+            <label >du자<input type="radio" vlaue="women"></label>
+        </fieldset>
+
+        <div class="box">
+            <label for="job">직업</label>
+                <select name="job" id="job">
+                    <option value="">선택</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+
+                    <optiongroup labe="숫자">
+                        <optin value="2">2</optin>
+                        <optin value="2">2</optin>
+                        <optin value="2">2</optin>
+
+                    </optiongroup>
+
+                </select>
+
+            </div>
+        
+    </form>
+
+    <script>
+        let btn= function(){
+            document.querySelector("h1").innerText="잘가";
+        }
+        let mouseOver = function(){
+            document.querySelector(".box").style.backgroundColor="red";
+        }
+
+        let submit = function(){
+            let a = document.querySelector("#one").value;
+            document.querySelector("#two").value = a;
+        }
+         let mLeft = 0 ;
+        let marginLeft = function(){
+             mLeft = mLeft +100;
+            document.querySelector(".box").style.marginLeft=mLeft + "px";
+        }
+
+        for (let i= 0 ; i <10 ; i++ ){
+            document.querySelectorAll('p')[i].innerText='안녕?';
+        }
+
+
+        let names=['고양이','나비','다람쥐','강아지','돌고래'];
+        
+        let print = () =>{
+            for(let i=0; i<5 ; i++){
+            document.querySelectorAll("li")[i].innerText=names[i];
+        }
+        }
+       
+
+        for (let i=0; i < 8; i++){
+            let mLeft = 0;
+
+            document.querySelectorAll(".container")[i].addEventListener("click",(e)=>{
+                mLeft += 100;
+
+                e.target.style.marginLeft= mLeft + "px";
+            })
+        }
+
+
+        document.querySelector(".bigBox").addEventListener("mouseover",(e)=>{
+            let x= event.offsetX;
+            let y= event.offsetY;
+
+            event.target.innerText= "x:" + x  + "y:" +y     })
+    </script>
+</body>
+</html>
