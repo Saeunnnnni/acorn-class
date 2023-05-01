@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> 스탑워치 만들기!</h1>
+    <p>
+        <strong id="min">0</strong> :
+        <strong id="sec">0</strong> :
+        <strong id="mSec">0</strong>
+        
+    </p>
+
+    <button id="startBtn">시작</button>
+    <button id="resetBtn">재설정</button>
+
+    <script>
+        //변수를 한번에 여러개 선언하기 !
+        let min= 0, sec = 0 , mSec = 0;
+        //상태값을 관리할 변수를 만들고 초기 상태값 대입하기 
+        let isStarted = false;
+
+        document.querySelector('#startBtn').addEventListener("click",(e)=>{
+            //이벤트가 일어난 요소의 innerText를 바꾸기
+
+            //만일 시작된 state 라면 "중단"으로 바꾸고 
+            //중단된 state(시작된 state가 아니라면)'시작'으로 바꾼다.
+            //버튼을 누르면 innerText가 중단으로 바뀌고 중단일때 누르면 시작으로 바뀌게!  -> state관리, 상태값 관리
+
+
+            if ( isStarted){
+                isStarted=false;
+                e.target.innerText='시작';
+            } else{
+                isStarted=true;
+                e.target.innerText='중단';
+            } 
+        
+        }) ;
+        //isStarted가 true일 경우에만 실행이 되게 해야함 ! 근데 if문 안에 if문이 들어가면 좀 복잡해보일 수 있기 때문에 
+        setInterval(()=>{
+            //만일 시작된 상태가 아니라면 함수를 여기서 종료하기
+            // =if(!isStrated){}와 동일한 형태
+            if(isStarted==false){
+                return;
+            } //isStarted가 false가 되니까 return으로 되면서 멈추게 된다. 근데 isStarted가 true이면 아래 코드가 실행됨 !
+
+            // 1/100초마다 한번씩 호출되는 함수 
+            mSec++;
+            if(mSec == 100){
+                sec++;
+                mSec=0;
+            }if(sec == 60){
+                min++;
+                sec=0;
+            }
+            document.querySelector("#mSec").innerText=mSec;
+            document.querySelector("#sec").innerText=sec;
+            document.querySelector("#min").innerText=min;
+
+        }, 10);
+
+        document.querySelector('#resetBtn').addEventListener("click",(e)=>{
+            //변수 모두 초기화 
+            min=0;
+            sec=0;
+            mSec=0;
+            isStarted =false;
+
+            document.querySelector("#mSec").innerText=0;
+            document.querySelector("#sec").innerText=0;
+            document.querySelector("#min").innerText=0;
+            //버튼의 innerText도 초기화 
+           document.querySelector('#startBtn').innerText="시작";
+        })
+    </script>
+</body>
+</html>

@@ -44,9 +44,19 @@
 
     */
 
-    let result2 = phones.filter(item => item.price > 30).map(phones => phones.name).sort((a,b)=>(a-b));
+    let result2 = phones.filter(item => item.price > 30).sort((a,b)=>(a-b));
 
-    console.log(result2);
+    console.log(result2);   //내가 쓴 답 ! 
+
+    let result3=  phones.filter(item=>item.price >=50).sort((a,b)=>a.price - b.price);
+
+    console.log(result3);       //정답 !  result4를 줄인 함수 !
+
+    let result4=  phones.filter(function(item){
+        return item.price >=50
+    }).sort(function(a,b){
+        return a.price - b.price});
+        //result3와 같음 ! function return 값을 표현함 ! 
     </script>
 </body>
 </html>
