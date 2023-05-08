@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>canvas 요소 활용해보기</h1>
+    <!-- canvas요소는 width와 height 를 속성으로 직접 지정할 수 있다. -->
+    <canvas id="myCanvas" width="800" height="500"></canvas>
+
+
+    <script> 
+        const canvas=document.querySelector('#myCanvas');  
+        const context= canvas.getContext('2d');  
+
+        const snipeImg = new Image();
+        snipeImg.src='images/snipe.png';
+
+        const holeImg= new Image();
+        holeImg.src="images/hole.png";
+
+        const backImg=new Image();
+        backImg.src="images/background.jpg";
+ 
+        const rabbitImg1= new Image();
+        rabbitImg1.src="images/rabbit_1.png";
+        
+        const rabbitImg2= new Image();
+        rabbitImg2.src="images/rabbit2.png";
+
+    
+        const rabbitImgs=[rabbitImg1, rabbitImg2];
+      
+        let snipeX=0, snipeY=0;
+
+        const holes=[];
+        
+    
+        let rabbitX=400, rabbitY=250;
+
+        let rabbitIndex=0;
+
+        let count = 0 ;
+
+        setInterval(()=>{
+      
+            count++;
+
+        
+            context.drawImage(backImg, 0, 0, 800, 500);
+
+            for(let i =0 ; i < holes.length; i++){
+            
+                let tmp=holes[i];
+            
+                context.drawImage(holeImg, tmp.x-10, tmp.y-10,20,20);
+            }
+       
+            context.drawImage(rabbitImgs[rabbitIndex],rabbitX-50, rabbitY-50, 100, 100);
+            context.drawImage(snipeImg, snipeX-50,snipeY-50, 100, 100);
+
+        
+            if(count%20 == 0){
+                rabbitIndex++;
+              
+                if(rabbitIndex==2){
+                    rabbitIndex=0;
+            };
+            }
+      
+            let ranNum = parseInt(Math.random() * 50);         
+
+            if(ranNum == 50){
+
+                rabbitX = Math.random() * 700 + 50;    //50~750사이
+                rabbitY= Math.random()* 400+50; //50 ~ 450사이
+            }    
+        },10) ; 
+
+        canvas.addEventListener("mousemove", (e)=> {
+            snipeX= e.offsetX;
+            snipeY = e.offsetY;
+        });
+
+        canvas.addEventListener("mousedown", (e)=> {
+            const hole={x:e.offsetX, y:e.offsetY};
+            holes.push(hole);
+        });
+
+ 
+    </script>
+</body>
+</html>
