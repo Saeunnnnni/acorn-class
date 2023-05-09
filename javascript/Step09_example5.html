@@ -40,6 +40,7 @@
         
         const rabbitImg2= new Image();
         rabbitImg2.src="images/rabbit2.png";
+        
 
         //로딩된 이미지를 배열에 담아 놓는다. ( 나중에 애니매이션 효과를 주기 위해)
         const rabbitImgs=[rabbitImg1, rabbitImg2]
@@ -66,6 +67,31 @@
         const fireSound= new Audio("sounds/fire.wav");
         const dieSound=new Audio("sounds/birddie.mp3");
 
+
+        //풍선 이미지를 저장할 배열
+        const bubbleImgs=[];
+        //반복문 돌면서 
+        for(let i=0; i<6; i++){
+            //풍선이미지를 로딩해서
+            let tmp= new Image();
+            tmp.src="images/b"+i+".png";
+            //배열에 누적시키기
+            bubbleImgs.push(tmp);
+        }
+
+        //테스트용
+        //풍선이 움직이기 위해서는 풍선의 x,y좌표
+        //풍선의 움직이기 위한 속도 값 speedx,y값 index값 총 풍선 한개당 5개의 정보가 필요하다
+        //풍선은 한번에 6개를 만들예정이고 풍선의 정보를 배열에 누적시켜놓고사용 
+        /*let bubbleX=400;
+        let bubbleY=250;
+        let bubbleIndex=0;
+        let speedX=Math.random()*20-10; //-10에서 10사이의 랜덤한 실수 얻어내기
+        let speedY=Math.random()*20-10; */
+        //부호와 각각의 크기에 따라사 대상의 움직이는 속도와 방향이 달라진다!
+        //그래서 랜덤하게 움직이게 하려면 랜덤함수를 이용! 
+        const bubbles=[];
+
         setInterval(()=>{
             //함수가 호출될때 마다 cout를 1씩 증가 
             count++;
@@ -86,7 +112,25 @@
                 context.drawImage(holeImg, tmp.x-10, tmp.y-10,20,20);
             }
             //토끼 그리기
-            context.drawImage(rabbitImgs[rabbitIndex],rabbitX-50,rabbitY-50,100,100);
+            context.drawImage(rabbitImgs[rabbitIndex],rabbitX-50,rabbitY-50, 100, 100);
+
+            //풍선 그리기 
+            for(let i=0; i<bubbles.length; i++){
+                //i번째 풍선 정보를 가지고 있는 object를 참조해서
+                let tmp=bubbles[i];
+                //object안에 있는 정보를 바탕으로 풍선을 그린다.
+                context.drawImage(bubbleImgs[tmp.index], tmp.x-25, tmp.y-25,50,50);
+            }
+
+            //풍선 움직이기
+            for(let i = 0; i< bubbles.length; i++){
+                let tmp=bubbles[i];
+                //각각 풍선의 speedX, speedY값 만큼 x,y 좌표를 변화 시킨다.
+                tmp.x += tmp.speedX;
+                tmp.y += tmp.speedY;
+            }
+
+            //스나이프 그리기
             context.drawImage(snipeImg, snipeX-50,snipeY-50, 100, 100);
 
             //20번 호출될때
@@ -153,6 +197,22 @@
                 fireSound.currentTime=0;
                 dieSound.play();
                 console.log("윽")
+
+                //여기서 풍선을 만든다 !
+                   
+           
+                for(let i=0; i<6; i++){
+                    //새로운 object를 하나 만들어서 
+                    let tmp={};
+                    //풍선 하나의 정보를 담고 
+                    tmp.x=rabbitX;
+                    tmp.y=rabbitY;
+                    tmp.index=i;
+                    tmp.speedX=Math.random()*20-10;
+                    tmp.speedY=Math.random()*20-10;
+                    //배열에 누적시기키
+                    bubbles.push(tmp);
+                }
             }
 
         });
