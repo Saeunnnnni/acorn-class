@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+</head>
+<body>
+    <script>
+
+
+        let canvas; 
+        let ctx;
+
+        canvas = document.createElement("canvas");
+        ctx = canvas.getContext("2d");  //2의 세계를 ctx에 넣어줌 
+        canvas.width = 400;
+        canvas.height = 700;
+
+        document.body.appendChild(canvas); //body에 캔버스를 자식으로 append해줌
+
+        let backgroundImage,spaceshipImage,bulletImage,gameOverImage;
+        function loadImage(){
+            backgroundImage = new Image();
+            backgroundImage.src="game_images/backgrouneImage.png"
+
+            spaceshipImage = new Image();
+            spaceshipImage.src="game_images/rocket.png"
+
+            bulletImage = new Image();
+            bulletImage.src="game_images/bullet.png"
+
+            gameOverImage = new Image();
+            gameOverImage.src="game_images/gameOver.png"
+        }
+
+    </script>
+</body>
+</html>
