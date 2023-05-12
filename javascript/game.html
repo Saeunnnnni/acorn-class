@@ -7,10 +7,11 @@
     <title>Game</title>
 </head>
 <body>
+
+    <h1>안녕</h1>
+
     <script>
-
-
-        let canvas; 
+          let canvas; 
         let ctx;
 
         canvas = document.createElement("canvas");
@@ -18,23 +19,55 @@
         canvas.width = 400;
         canvas.height = 700;
 
-        document.body.appendChild(canvas); //body에 캔버스를 자식으로 append해줌
+        document.body.appendChild(canvas);//body에 캔버스를 자식으로 append해줌
 
-        let backgroundImage,spaceshipImage,bulletImage,gameOverImage;
+        let backgroundImage, spaceshipImage, bulletImage, gameOverImage;
+
+        //우주선 좌표
+
+        //전체 높이 - 우주선 높이 = Y 
+        //캔버스의 중앙 200 - (우전선 넓이 /2) = x
+        let spaceshipX = canvas.width/2 -32;
+        let spaceshipY = canvas.height - 64;
+
         function loadImage(){
             backgroundImage = new Image();
-            backgroundImage.src="game_images/backgrouneImage.png"
+            backgroundImage.src="game_images/backgrouneImage.png";
 
             spaceshipImage = new Image();
-            spaceshipImage.src="game_images/rocket.png"
+            spaceshipImage.src="game_images/rocket.png";
 
             bulletImage = new Image();
-            bulletImage.src="game_images/bullet.png"
+            bulletImage.src="game_images/bullet.png";
 
             gameOverImage = new Image();
-            gameOverImage.src="game_images/gameOver.png"
+            gameOverImage.src="game_images/gameOver.png";
         }
 
+        //render ->  = draw 
+        function render(){
+            ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(spaceshipImage, spaceshipX, spaceshipY)
+            //canvas의 위치, 높이만큼 채운다 
+         
+        }
+
+        //canvas는 1초마다 호출을 해주어야 화면에 보임
+        //이미지를 계속 호출을 해야하기 때문에 main이라는 함수를 만들어서 사용
+        function main(){
+
+            render(); 
+            console.log("애니메이션 프레임은 메인이라는 함수를 호출하고 있다")
+
+            requestAnimationFrame(main)
+
+        }
+
+        loadImage();
+        render();
+        main();
+       
     </script>
+ 
 </body>
 </html>
