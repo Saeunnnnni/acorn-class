@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+    <div class="container">
+        <h1>회원가입 폼</h1>
+        <form action="">
+            <div class="mb-2">
+                <label class="form-label" for="id">아이디</label>
+                <input class="form-control" type="text" id="id" name="id">
+                <div class="invalidd-feedback">
+                    영문자 소문자로 시작하고 4글자 이상 10글자 이하로 작성해 주세요!
+                </div>
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="email">이메일</label>
+                <input class="form-control" type="text" id="email" name="email">
+                <div class="invalid-feedback">
+                    이메일 형식에 맞게 입력해주세요.
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm" type="submit" disabled="disabled">가입</button>
+        </form>
+    </div>
+    <script>
+         //1. id값 전체가 유효한 경우 2.이메일 전체가 유효한 경우 3.폼 전체가 유효한 경우 
+        let isFormValid = false;
+        let isIdValid=false;
+        let isEmailValid = false;
+
+
+        //페이지 로딩 시점에 상태값을 관리 할 변수를 만들고 초기값을 부여한다.
+        document.querySelector("#id").addEventListener("input",(e)=>{
+            //입력한 아이디를 읽어온다
+
+            const inputId= e.target.value; //이벤트가 일어난 바로 그 요소의 참조값
+            //const inputId2= document.querySelector("#id").value;
+            //아이디가 5글자 이상인지 여부를 판별한다.
+           // isIdValid = inputId.length >= 5; //문자열의 길이 알아내기 //2)전역변수를 만들고 여기서 상수값을 지워주면 전역변수에서까지의 넓은 영역에서 사용 가능
+
+            const reg = /^[a-z].{3,9}$/; //아이디를 검증할 정규표현식 객체
+             //정규표현식 객체의 test() 함수를 호출하면서 입력한 문자열을 전달하면 매칭여부가 리턴된다.
+            isIdValid =reg.test(inputId);
+            
+            //만일 아이디가 유효하면 is-valid를 추가하고 is-invalid는 제거한다.
+             //만일 아이디가 유효하지 않다면 is-invalid를 추가하고 is-valid는 제거한다.
+            if(isIdValid){
+                //class 속성 추가 , 제거
+                document.querySelector("#id").classList.add("is-valid"); 
+                document.querySelector("#id").classList.remove("is-invalid");
+               
+            }else{
+                document.querySelector("#id").classList.add("is-invalid");
+                document.querySelector("#id").classList.remove("is-valid");
+            }
+            buttonCheck();
+
+        })
+
+        document.querySelector("#email").addEventListener("input",(e)=>{
+            //1. 입력한 이메일 주소를 읽어온다,
+            const inputEmail = e.target.value;
+            //2. 이메일을 검증할 정규표현식 객체 생성
+            let regex = new RegExp('[a-z0-9]+@[a-z]+\\.[a-z]{2,3}');
+            //3. 이메일 형식에 부합하는지 확인
+            isEmailValid = regex.test(inputEmail); //test라는 함수를 가지고 있음 
+            //4. 부합하는지 여부에 따라서 is-valid와 i-invalid클래스를 추가 혹은 제거하기
+            if(isEmailValid){
+                document.querySelector("#email").classList.add("is-valid");
+                document.querySelector("#email").classList.remove("is-invalid");
+               
+            }else{
+                document.querySelector("#email").classList.add("is-invalid");
+                document.querySelector("#email").classList.remove("is-valid");
+            }
+            buttonCheck();
+              
+        })
+
+        //폼 전체가 유효한지의 여부를 양쪽 input에 중복으로 작성해야 하기 때문에 함수로 만들어서 호출하면 코드 중복을 방지 하고 관리가 편리해짐!
+        //버튼의 상태를 바꾸는 함수 
+        function buttonCheck(){
+            //폼 전체가 유효한지 여부 
+            isFormValid = isIdValid && isEmailValid;  
+            if(isFormValid){
+                document.querySelector("button[type=submit]").removeAttribute("disabled");
+            }else{
+                document.querySelector("button[type=submit]").setAttribute("disabled", "disabled");
+                }
+        }
+       
+
+    </script>
+
+</body>
+</html>

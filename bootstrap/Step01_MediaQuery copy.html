@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg-yellow{
+            background-color: yellow;
+        }
+
+        /*
+        아래의 미디어 쿼리의 중괄호 안에 작성한 css는 조건부로 적용된다
+        () 안의 조건이 true인 경우에만 적용된다
+        따라서 device의 폭이 최소  768px이상이 되어야 적용된다 .
+        */
+
+
+
+        @media(min-width:768px){
+            .bg-green{
+            background-color: green;
+        }
+
+        }
+       
+
+    </style>
+</head>
+<body>
+    <p class="bg-yellow bg-green">p1입니다</p>
+</body>
+</html>
