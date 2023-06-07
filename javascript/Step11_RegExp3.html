@@ -17,7 +17,7 @@
         */
         //const reg=/[^ ]+/g;
         //반복문 돌면서 찾기
-
+        //const reg=/[^ ]+/g;
         const reg= new RegExp("[^ ]+","g");
 
         while(true){
@@ -32,10 +32,10 @@
             let tmp = reg.exec(str);
             //더이상 찾을게 없으면 null이 리턴된다.
             if(tmp == null)break;
-            alert(tmp);
+            console.log(tmp);
 
             const word = `<li>${tmp}</li>`; 
-            document.querySeletor("#wordList").insertAdjacentHTML("beforeend", word);
+            document.querySelector("#wordList").insertAdjacentHTML("beforeend", word);
             
         }
 
