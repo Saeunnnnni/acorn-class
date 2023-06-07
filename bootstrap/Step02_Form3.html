@@ -11,6 +11,7 @@
     <div class="container">
         <h1>회원가입 폼</h1>
         <form action="">
+<<<<<<< HEAD
             <div class="mb-2">
                 <label class="form-label" for="id">아이디</label>
                 <input class="form-control" type="text" id="id" name="id">
@@ -36,10 +37,23 @@
 
 
         //페이지 로딩 시점에 상태값을 관리 할 변수를 만들고 초기값을 부여한다.
+=======
+            <div>
+                <label class="form-label" for="id">아이디</label>
+                <input class="form-control" type="text" id="id" name="id">
+                <div class="invalidd-feedback">
+                    5 글자 이상 입력하세요!
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+>>>>>>> 88cb4a6100eaeb3c64c4ab10660abfe6e2e6e9a2
         document.querySelector("#id").addEventListener("input",(e)=>{
             //입력한 아이디를 읽어온다
 
             const inputId= e.target.value; //이벤트가 일어난 바로 그 요소의 참조값
+<<<<<<< HEAD
             //const inputId2= document.querySelector("#id").value;
             //아이디가 5글자 이상인지 여부를 판별한다.
            // isIdValid = inputId.length >= 5; //문자열의 길이 알아내기 //2)전역변수를 만들고 여기서 상수값을 지워주면 전역변수에서까지의 넓은 영역에서 사용 가능
@@ -96,6 +110,24 @@
         }
        
 
+=======
+            const inputId2= document.querySelector("#id").value;
+            //아이디가 5글자 이상인지 여부를 판별한다.
+            const isIdValid = inputId.length >= 5; //문자열의 길이 알아내기
+            //만일 5글자 이상이면 is-valid를 추가하고 is-invalid는 제거한다.
+             //만일 5글자 미만이면 is-invalid를 추가하고 is-valid는 제거한다.
+            if(isIdValid){
+
+                //class 속성 추가 , 제거
+                document.querySelector("#id").classList.add("is-valid") 
+                document.querySelector("#id").classList.remove("is-invalid")
+            }else{
+                document.querySelector("#id").classList.remove("is-valid")
+                document.querySelector("#id").classList.add("is-invalid")
+            }
+
+        })
+>>>>>>> 88cb4a6100eaeb3c64c4ab10660abfe6e2e6e9a2
     </script>
 
 </body>
