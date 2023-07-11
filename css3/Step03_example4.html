@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="animate.css">
+    <style>
+      .box{
+        width: 300px;
+        height: 200px;
+        margin: 0 auto;
+        border: 1px solid red;
+        background-color: yellowgreen;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 30px;
+      }
+
+      .box{
+        animation: slideInLeft 1s ease-out;
+      }
+
+      .box img{
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="box">1</div>
+        </div>
+    </div>
+    <script>
+        //ajax 요청으로 받아온 출력할 이미지의 경로라고 가정
+        let images=["images/image01.png", "images/image02.png" , "images/image03.png" , "images/image04.png" , "images/image05.png"  ];
+
+        //인덱스로 관리할 변수
+        let index=0;
+        
+
+        function makeBox() {
+            //div요소를 동적으로 만들어서 참조값 얻어내기
+            
+            const box=document.createElement("div");
+            //box클래스 추가하고
+            box.classList.add("box");
+            const img=document.createElement("img");
+            //이미지 출력하고 
+            img.setAttribute("src", images[index]);
+            //box div 에 추가
+            box.append(img);
+            index++;
+            if(index== images.length){ //만일 존재하지 않는 인덱스라면 
+                index=0; //인덱스를 다시 처음으로 되돌린다.
+            }
+            //wrapper div 의 자식 요소로 추가하기 
+            document.querySelector(".wrapper").append(box);
+            box.addEventListener("click",(e)=>{
+                e.target.remove();
+                makeBox();
+            })
+        }
+        makeBox();
+    </script>
+</body>
+</html>
