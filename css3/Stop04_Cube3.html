@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step04_Cube2.html</title>
+    <style>
+        .wrapper{
+            perspective: 500px;
+            perspective-origin: 50% 50%;
+        }
+        .cube{
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            transform-origin: 50% 50%;
+            transform: translateZ(-200px);
+            transition: transform  1s ease-out;
+        }
+        .cube > div{
+            border: 1px solid red;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background-color: antiquewhite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 100px;
+            font-weight: bold;
+            opacity: 0.5;
+          
+        } 
+ /*        .cube > div:nth-child(1){
+            transform: translateZ(200px);
+        }
+        .cube > div:nth-child(2){
+            transform: rotateY(90deg) translateZ(200px);
+        }
+        .cube > div:nth-child(3){
+            transform: rotateY(180deg) translateZ(200px);
+        }
+        .cube > div:nth-child(4){
+            transform: rotateY(270deg) translateZ(200px);
+        } */
+        .nav{
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        .left-rotate{
+            transform: translateZ(-200px) rotateY(-90deg);
+        }
+
+        .right-rotate{
+            transform: translateZ(-200px) rotateY(90deg);
+        }
+     
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>3d cube 테스트</h3>
+        <div class="wrapper">
+            <div class="cube">
+              
+               
+            </div>
+
+            <div class="nav">
+                <button id="left_Btn" type="button">&lArr;</button> 
+                <button id="right_Btn" type="button">&rAarr;</button>
+            </div>
+        </div>
+    </div>
+   
+    <script>    
+        //[javascript로 div요소 추가하기]
+       // 만들어야 할 div 가 4 개 이기 때문에 반복문 4번 돌기
+       for(let i=0; i<4; i++){
+            //div 를 만들어서 
+            const div=document.createElement("div");
+            //innerText 를 출력하고 
+            div.innerText=i+1;
+            //.cube 에 추가하기
+            document.querySelector(".cube").append(div);
+        }
+
+
+        //[css없이 transform값 변경하기]
+        //.cube안에 있는 모든 div의 참조값을 배열로 얻어내기
+        const divs = document.querySelectorAll(".cube div");
+        
+        let deg= 0 ;//rotate값을 초기화해서 반복문 돌면서 +90씩 증가하게 하기! 
+
+        //반복문 돌면서 모든 div에 transform 적용하기
+        for(let i=0; i < divs.length; i++){
+            deg +=90;  //let rotate=i*90 인 변수를 넣어주어도 된다! 
+            divs[i].style.transform=`rotateY(${deg}deg) translateZ(200px)`
+        }
+
+
+
+        //y축 기준 회전하는 값을저장할 변수 선언하고 초기값 0 대입
+        let rY = 0;
+
+        document.querySelector("#left_Btn").addEventListener("click",()=>{
+            rY -=90;
+            document.querySelector(".cube").style.transform="translateZ(-200px) rotateY("+rY+"deg)";
+            //.classList.add("left-rotate");
+        })
+        
+
+        document.querySelector("#right_Btn").addEventListener("click",()=>{
+            rY +=90;
+            document.querySelector(".cube").style.transform=`translateZ(-200px) rotateY(${rY}deg)`;
+            //.classList.add("right-rotate");
+        })
+
+    </script>
+</body>
+</html>

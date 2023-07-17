@@ -27,10 +27,21 @@
         width: 200px;
         height: 200px;
       }
+      /* animate css에 정의된 클래스를 사용하되 원하는 option으로 동작하게 하고 싶으면 css를 추가로 적용시키면 된다. */
+      .animate__bounce{
+        animation-iteration-count: 3;
+      }
+      
     </style>
 </head>
 <body>
     <div class="container">
+      <!-- 
+        animate__animated animate__키프레임이름
+        위와 같은 클래스를 어떤 요소에 추가하면 페이지 로딩 시점에 한번 동작한다.
+       -->
+
+      <h1 class="animate__animated animate__bounce">An animated element</h1>
         <div class="wrapper">
             <div class="box">1</div>
         </div>
